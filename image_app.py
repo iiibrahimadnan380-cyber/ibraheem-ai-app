@@ -19,7 +19,7 @@ if st.button("Image Banao ✨"):
         seed = random.randint(1, 99999)
         
         # YAHAN APNA TOKEN LAGAO - pk_ wala code paste karo
-        TOKEN = "YAHAN_APNA_TOKEN_PASTE_KARO"
+        TOKEN = "sk_B8VzFuFlq0AOhacS9C9WiVe5pg0eHlS1"
         
         image_url = f"https://image.pollinations.ai/prompt/{encoded}?width=1024&height=1024&seed={seed}&model=flux&nologo=true&token={TOKEN}"
         

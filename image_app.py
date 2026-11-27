@@ -18,11 +18,13 @@ if st.button("Image Banao ✨"):
         encoded = urllib.parse.quote(full_prompt)
         seed = random.randint(1, 99999)
         
-        image_url = f"https://image.pollinations.ai/prompt/{encoded}?width=1024&height=1024&seed={seed}&model=flux&nologo=true"
+        # YAHAN APNA TOKEN LAGAO - pk_ wala code paste karo
+        TOKEN = "YAHAN_APNA_TOKEN_PASTE_KARO"
         
-        with st.spinner("⏳ AI bana raha hai... 10-20 second lagega, wait karo..."):
+        image_url = f"https://image.pollinations.ai/prompt/{encoded}?width=1024&height=1024&seed={seed}&model=flux&nologo=true&token={TOKEN}"
+        
+        with st.spinner("⏳ AI bana raha hai... 10-20 second lagega..."):
             st.image(image_url, caption=prompt, use_container_width=True)
         
         st.success("✅ Ho gaya! Image ban gayi!")
-        st.markdown(f"### [📥 Image Download Karne Ke Liye Yahan Click Karo]({image_url})")
-        st.info("💡 Tip: Agar 'Busy' likha aaye to 10 second ruk ke dobara button dabao, free wali line kabhi kabhi full hoti hai.")
+        st.markdown(f"### [📥 Image Download Karo]({image_url})")

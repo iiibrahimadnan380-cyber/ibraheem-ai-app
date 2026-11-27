@@ -1,25 +1,28 @@
 import streamlit as st
-import requests
 import urllib.parse
+import random
 
-st.title("Mera AI Image App")
+st.set_page_config(page_title="Mera AI Image App", page_icon="🎨")
+
+st.title("🎨 Mera AI Image App")
 st.write("Likho kya banana hai, AI bana dega!")
 
-prompt = st.text_input("Image kaisa chahiye? Example: a cat riding a bike in Lahore")
+prompt = st.text_input("Image kaisa chahiye?", placeholder="Example: a cat riding a bike in Lahore")
 style = st.selectbox("Style choose karo:", ["Real Photo", "Cartoon", "3D", "Anime", "Painting"])
 
 if st.button("Image Banao ✨"):
-    if prompt:
-        full_prompt = prompt + " , " + style + " style, high quality"
-        encoded = urllib.parse.quote(full_prompt)
-        image_url = f"https://image.pollinations.ai/prompt/{encoded}?width=1024&height=1024&seed=42&nologo=true"
-        
-        with st.spinner("AI bana raha hai... thoda wait karo..."):
-            try:
-                st.image(image_url, caption=prompt)
-                st.success("Ho gaya! Neeche download kar sakte ho")
-                st.markdown(f"[Image Download Karo]({image_url})")
-            except Exception as e:
-                st.error("Dobara try karo, AI busy hai")
+    if not prompt:
+        st.warning("⚠️ Pehle kuch likho!")
     else:
-        st.warning("Pehle kuch likho!")
+        full_prompt = prompt + ", " + style + " style, ultra detailed, high quality"
+        encoded = urllib.parse.quote(full_prompt)
+        seed = random.randint(1, 99999)
+        
+        image_url = f"https://image.pollinations.ai/prompt/{encoded}?width=1024&height=1024&seed={seed}&model=flux&nologo=true"
+        
+        with st.spinner("⏳ AI bana raha hai... 10-20 second lagega, wait karo..."):
+            st.image(image_url, caption=prompt, use_container_width=True)
+        
+        st.success("✅ Ho gaya! Image ban gayi!")
+        st.markdown(f"### [📥 Image Download Karne Ke Liye Yahan Click Karo]({image_url})")
+        st.info("💡 Tip: Agar 'Busy' likha aaye to 10 second ruk ke dobara button dabao, free wali line kabhi kabhi full hoti hai.")
